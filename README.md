@@ -1,2 +1,2 @@
-# 232-2_C_project
+# 232-2_CPP_project
 Kuznetsov Maxim, Silaev Timofey
