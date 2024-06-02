@@ -17,20 +17,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     conv_layer.cpp \
+    inferencewindow.cpp \
     main.cpp \
     mainwindow.cpp \
-    mlp.cpp
+    mlp.cpp \
+    trainwindow.cpp
 
 HEADERS += \
     conv_layer.h \
+    inferencewindow.h \
     mainwindow.h \
     mlp.h \
     stb_image.h \
     stb_image_resize.h \
-    stb_image_write.h
+    stb_image_write.h \
+    trainwindow.h
 
 FORMS += \
-    mainwindow.ui
+    inferencewindow.ui \
+    mainwindow.ui \
+    trainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
