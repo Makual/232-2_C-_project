@@ -219,7 +219,7 @@ void loadImagesAndLabels(const std::string& csvFile, const std::string& imageDir
         if (!std::getline(ss, label, ',')) continue;
         if (!std::getline(ss, imagePath, ',')) continue;
 
-        std::string fullImagePath = "C:/Users/Makual/Documents/test/" + imageDir + "/" + imagePath;
+        std::string fullImagePath = imageDir + "/" + imagePath;
 
         int width, height, channels;
         unsigned char* input_image = stbi_load(fullImagePath.c_str(), &width, &height, &channels, 1);

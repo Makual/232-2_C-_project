@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>407</width>
-    <height>349</height>
+    <width>625</width>
+    <height>532</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>30</y>
-      <width>51</width>
-      <height>16</height>
+      <x>150</x>
+      <y>70</y>
+      <width>141</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
@@ -30,10 +30,10 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>280</y>
-      <width>75</width>
-      <height>23</height>
+      <x>110</x>
+      <y>340</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -43,10 +43,10 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>90</x>
       <y>140</y>
-      <width>91</width>
-      <height>23</height>
+      <width>271</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="text">
@@ -56,10 +56,10 @@
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>370</x>
       <y>140</y>
-      <width>91</width>
-      <height>23</height>
+      <width>221</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="text">
@@ -72,7 +72,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>407</width>
+     <width>625</width>
      <height>21</height>
     </rect>
    </property>
