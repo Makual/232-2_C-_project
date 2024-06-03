@@ -17,11 +17,12 @@ public:
 
 private slots:
     void on_pushButton_2_clicked();
-
     void on_pushButton_clicked();
 
 private:
     Ui::InferenceWindow *ui;
+    void appendTextToScrollArea(const QString &text);
+    void clearScrollArea();
 };
 
 #endif // INFERENCEWINDOW_H

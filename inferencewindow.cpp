@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <mainwindow.h>
-
+#include <QVBoxLayout>
 #include "mainwindow.h"
 #include <QApplication>
 #include <QLabel>
@@ -51,6 +51,8 @@ InferenceWindow::InferenceWindow(QWidget *parent) :
     ui(new Ui::InferenceWindow)
 {
     ui->setupUi(this);
+    QVBoxLayout* layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
+    ui->scrollAreaWidgetContents->setLayout(layout);
 }
 
 InferenceWindow::~InferenceWindow()
@@ -64,9 +66,6 @@ void InferenceWindow::on_pushButton_2_clicked()
     qDebug() << str;
     std::string imagePath = str.toStdString();
 
-//    std::string imagePath = "F:/!Tima/!AI/qt/CPP_project/test.jpg";
-//    std::string imagePath = "F:/!Tima/!AI/qt/CPP_project/number_two.png";
-
     const int imageSize = 32;
 
     // Preprocess the image
@@ -77,23 +76,43 @@ void InferenceWindow::on_pushButton_2_clicked()
     std::vector<int> kernelSizes = { 7, 5, 3, 1 };
     std::vector<int> numKernels = { 15, 15, 15, 15 };
     MLP mlp(layerSizes, kernelSizes, numKernels, imageSize, imageSize);
-    mlp.loadWeights("F:/!Tima/!AI/qt/CPP_project/mlp_weights_mnist_60_kernels_30.txt");
+    mlp.loadWeights("C:/Users/Makual/Downloads/232-2_CPP_project/232-2_CPP_project/232-2_CPP_project/mlp_weights_mnist_60_kernels_30.txt");
 
     // Perform forward pass
     std::vector<double> output = mlp.forward(image);
 
-    // Print the probabilities for each class
-    std::cout << "Class probabilities: " << std::endl;
-    for (size_t i = 0; i < output.size(); ++i) {
-        std::cout << "Class " << i << ": " << output[i] << std::endl;
-    }
+    // Clear previous content
+    clearScrollArea();
 
+    // Print the probabilities for each class
+    appendTextToScrollArea("Class probabilities:");
+    for (size_t i = 0; i < output.size(); ++i) {
+        appendTextToScrollArea(QString("Class %1: %2").arg(i).arg(output[i]));
+    }
 }
 
 void InferenceWindow::on_pushButton_clicked()
 {
-//    MainWindow window;
-//    window.setModal(true);
-//    window.exec();
     QApplication::quit();
+}
+
+void InferenceWindow::appendTextToScrollArea(const QString &text)
+{
+    QLabel *label = new QLabel(text, this);
+    label->setWordWrap(true);
+    QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->scrollAreaWidgetContents->layout());
+    if (layout) {
+        layout->addWidget(label);
+    }
+}
+
+void InferenceWindow::clearScrollArea()
+{
+    QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->scrollAreaWidgetContents->layout());
+    if (layout) {
+        while (QLayoutItem* item = layout->takeAt(0)) {
+            delete item->widget();
+            delete item;
+        }
+    }
 }
