@@ -28,7 +28,7 @@
 
 std::vector<double> preprocessImage(const std::string& imagePath, int targetWidth, int targetHeight) {
     int width, height, channels;
-    unsigned char* data = stbi_load(imagePath.c_str(), &width, &height, &channels, 1); // Load image as grayscale
+    unsigned char* data = stbi_load(imagePath.c_str(), &width, &height, &channels, 1); 
     if (!data) {
         std::cerr << "Failed to load image: " << imagePath << std::endl;
         exit(1);
@@ -40,7 +40,7 @@ std::vector<double> preprocessImage(const std::string& imagePath, int targetWidt
 
     std::vector<double> image(resizedData.begin(), resizedData.end());
     for (double& pixel : image) {
-        pixel /= 255.0; // Normalize pixel values to [0, 1]
+        pixel /= 255.0; 
     }
 
     return image;
@@ -68,23 +68,23 @@ void InferenceWindow::on_pushButton_2_clicked()
 
     const int imageSize = 32;
 
-    // Preprocess the image
+
     std::vector<double> image = preprocessImage(imagePath, imageSize, imageSize);
 
-    // Initialize the MLP
+
     std::vector<int> layerSizes = { imageSize / 2 * imageSize / 2 * 60, 128, 64, 32, 10 };
     std::vector<int> kernelSizes = { 7, 5, 3, 1 };
     std::vector<int> numKernels = { 15, 15, 15, 15 };
     MLP mlp(layerSizes, kernelSizes, numKernels, imageSize, imageSize);
     mlp.loadWeights("C:/Users/Makual/Downloads/232-2_CPP_project/232-2_CPP_project/232-2_CPP_project/mlp_weights_mnist_60_kernels_30.txt");
 
-    // Perform forward pass
+
     std::vector<double> output = mlp.forward(image);
 
-    // Clear previous content
+
     clearScrollArea();
 
-    // Print the probabilities for each class
+
     appendTextToScrollArea("Class probabilities:");
     for (size_t i = 0; i < output.size(); ++i) {
         appendTextToScrollArea(QString("Class %1: %2").arg(i).arg(output[i]));
