@@ -8,7 +8,7 @@ double sigmoid(double x) {
 }
 
 double sigmoid_derivative(double x) {
-    return x * (1 - x);
+    return (1 - x) * x;
 }
 
 std::vector<double> softmax(const std::vector<double>& x) {
@@ -199,7 +199,7 @@ void MLP::initializeWeights() {
 double MLP::computeLoss(const std::vector<double>& output, const std::vector<double>& target) {
     double loss = 0.0;
     for (size_t i = 0; i < output.size(); ++i) {
-        loss -= target[i] * std::log(output[i] + 1e-15); // Adding a small value to avoid log(0)
+        loss -= target[i] * std::log(output[i] + 1e-15);
     }
     return loss;
 }
@@ -240,7 +240,7 @@ void loadImagesAndLabels(const std::string& csvFile, const std::string& imageDir
 
         images.push_back(imageVector);
 
-        std::vector<double> labelVector(10, 0.0); // Assuming 10 classes
+        std::vector<double> labelVector(10, 0.0);
         try {
             int labelIndex = std::stoi(label);
             if (labelIndex >= 0 && labelIndex < 10) {
